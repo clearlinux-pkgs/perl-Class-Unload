@@ -4,13 +4,14 @@
 #
 Name     : perl-Class-Unload
 Version  : 0.11
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Class-Unload-0.11.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Class-Unload-0.11.tar.gz
 Summary  : 'Unload a class'
 Group    : Development/Tools
-License  : Artistic-1.0-Perl
-Requires: perl-Class-Unload-man
+License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
+Requires: perl-Class-Unload-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Class::Inspector)
 BuildRequires : perl(Test::Requires)
 
@@ -19,12 +20,21 @@ This archive contains the distribution Class-Unload,
 version 0.11:
 Unload a class
 
-%package man
-Summary: man components for the perl-Class-Unload package.
+%package dev
+Summary: dev components for the perl-Class-Unload package.
+Group: Development
+Provides: perl-Class-Unload-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Class-Unload package.
+
+
+%package license
+Summary: license components for the perl-Class-Unload package.
 Group: Default
 
-%description man
-man components for the perl-Class-Unload package.
+%description license
+license components for the perl-Class-Unload package.
 
 
 %prep
@@ -52,10 +62,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Class-Unload
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Class-Unload/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -64,8 +76,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Class/Unload.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Class/Unload.pm
 
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Class::Unload.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Class-Unload/LICENSE
