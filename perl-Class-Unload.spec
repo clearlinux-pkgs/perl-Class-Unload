@@ -4,7 +4,7 @@
 #
 Name     : perl-Class-Unload
 Version  : 0.11
-Release  : 3
+Release  : 4
 URL      : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Class-Unload-0.11.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Class-Unload-0.11.tar.gz
 Summary  : 'Unload a class'
@@ -76,7 +76,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/Class/Unload.pm
+/usr/lib/perl5/vendor_perl/5.28.0/Class/Unload.pm
 
 %files dev
 %defattr(-,root,root,-)
