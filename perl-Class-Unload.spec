@@ -4,7 +4,7 @@
 #
 Name     : perl-Class-Unload
 Version  : 0.11
-Release  : 25
+Release  : 26
 URL      : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Class-Unload-0.11.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/I/IL/ILMARI/Class-Unload-0.11.tar.gz
 Summary  : 'Unload a class'
